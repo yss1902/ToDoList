@@ -22,6 +22,17 @@ function TodoTable() {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if (newTodo.title === '') {
+            alert('타이틀을 입력해주세요.');
+            return;
+        }
+
+        if (newTodo.title.length > 20) {
+            alert('타이틀은 20자를 초과할 수 없습니다.');
+            return;
+        }
+
         const newId = todos.length + 1;
         const newRow: Todo = { ...newTodo, id: newId };
         setTodos([...todos, newRow]);
@@ -36,39 +47,40 @@ function TodoTable() {
     return (
         <>
             <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formTitle">
+                <Form.Group controlId="formTitle" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Form.Label>Title</Form.Label>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Form.Control
                         type="text"
                         name="title"
                         value={newTodo.title}
                         onChange={handleInputChange}
-                        style={{ width: '50%' }} // 타이틀 입력 필드의 크기를 줄이는 스타일 추가
+                        style={{ width: '50%' }}
                     />
-                    </div>
                 </Form.Group>
-                <Form.Group controlId="formContent">
+                <p></p>
+                <Form.Group controlId="formContent" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Form.Label>Content</Form.Label>
                     <Form.Control
-                        as="textarea" // 컨텐츠 입력 필드를 textarea로 변경
-                        rows={5} // textarea의 높이 조정
+                        as="textarea"
+                        rows={5}
                         name="content"
                         value={newTodo.content}
                         onChange={handleInputChange}
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit" style={{ marginTop: '15px', marginBottom: '15px' }}>
-                    제출
-                </Button>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px', marginBottom: '15px' }}>
+                    <Button variant="primary" type="submit">
+                        제출
+                    </Button>
+                </div>
             </Form>
             <Table striped bordered hover>
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>To Do 제목</th>
+                    <th style={{ width: '20%' }}>To Do 제목</th>
                     <th>To Do 내용</th>
-                    <th>동작</th>
+                    <th>삭제</th>
                 </tr>
                 </thead>
                 <tbody>
