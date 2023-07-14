@@ -20,12 +20,12 @@ function MyModal({ buttonLabel }: MyModalProps) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Thanks to</Modal.Title>
+                    <Modal.Title>만든 사람</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>이것은 Modal 입니다. 구름 풀스택 1기: 전민종</Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>
-                        so what?
+                        whatever
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -15,7 +15,6 @@ function App() {
             <Table/>
         </Container>
       <Footer/>
-
     </div>
   );
 }
